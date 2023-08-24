@@ -21,6 +21,7 @@ def detail(request, id):
 
 
 def create(request):
+    # POST 요청
     if request.method == 'POST':
         form = ArticleForm(request.POST)
 
@@ -28,19 +29,22 @@ def create(request):
             article = form.save()
             return redirect('articles:detail', id=article.id)
         else:
+            pass
             # form = ArticleForm()
-            context = {
-                'form': form,
-            }
-            return render(request, 'create.html', context)
+            # context = {
+            #     'form': form,
+            # }
+            # return render(request, 'create.html', context)
 
+    # GET 요청
     else:
         form = ArticleForm()
-        context = {
-            'form': form,
-        }
 
-        return render(request, 'create.html', context)
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'create.html', context)
         
 
 
