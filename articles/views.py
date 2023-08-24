@@ -27,6 +27,12 @@ def create(request):
         if form.is_valid():
             article = form.save()
             return redirect('articles:detail', id=article.id)
+        else:
+            # form = ArticleForm()
+            context = {
+                'form': form,
+            }
+            return render(request, 'create.html', context)
 
     else:
         form = ArticleForm()
